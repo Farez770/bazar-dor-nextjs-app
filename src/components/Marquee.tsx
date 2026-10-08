@@ -32,19 +32,18 @@ const Marquee = async () => {
               <p>{item.image}</p>
               <p>{item.nameBn}</p>
               <p>{`${toBengaliNumber(item.today)} টাকা/কেজি`}</p>
-              <p>
-                {item.change.dir === "up" ? (
-                  <div className="flex gap-1 items-center text-red-500">
-                    <IoCaretUpSharp />
-                    <p>{toBengaliNumber(item.change.pct)} %</p>
-                  </div>
-                ) : (
-                  <div className="flex gap-1 items-center text-green-500">
-                    <IoCaretDownSharp />
-                    <p>{toBengaliNumber(item.change.pct)} %</p>
-                  </div>
-                )}
-              </p>
+
+              {item.change.dir === "up" ? (
+                <div className="flex gap-1 items-center text-red-500">
+                  <IoCaretUpSharp />
+                  <p>{toBengaliNumber(item.change.pct)} %</p>
+                </div>
+              ) : (
+                <div className="flex gap-1 items-center text-green-500">
+                  <IoCaretDownSharp />
+                  <p>{toBengaliNumber(item.change.pct)} %</p>
+                </div>
+              )}
             </Link>
           ))}
         </MarqueeText>
