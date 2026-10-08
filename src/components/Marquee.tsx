@@ -5,11 +5,12 @@ import { IoCaretUpSharp, IoCaretDownSharp } from "react-icons/io5";
 import MarqueeText from "react-marquee-text";
 
 const Marquee = async () => {
-  const res = await fetch(
-    "https://api.api-store.workers.dev/api/bazardor/products",
-  );
+  const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products");
+  // const res = await fetch(
+  //   "https://api.api-store.workers.dev/api/bazardor/products",
+  // );
   const data = await res.json();
-  console.log(data);
+  // console.log(data);
 
   const toBengaliNumber = (value: number | string) => {
     const bengaliDigits = "০১২৩৪৫৬৭৮৯";
@@ -34,6 +35,22 @@ const Marquee = async () => {
               <p>{`${toBengaliNumber(item.today)} টাকা/কেজি`}</p>
 
               {item.change.dir === "up" ? (
+                <div className="flex items-center gap-1 text-red-500">
+                  <IoCaretUpSharp />
+                  <p>{toBengaliNumber(item.change.pct.toFixed(1))}%</p>
+                </div>
+              ) : item.change.dir === "down" ? (
+                <div className="flex items-center gap-1 text-green-500">
+                  <IoCaretDownSharp />
+                  <p>{toBengaliNumber(item.change.pct.toFixed(1))}%</p>
+                </div>
+              ) : (
+                <div className="flex items-center gap-1 text-gray-500">
+                  <p>{toBengaliNumber(item.change.pct.toFixed(1))}%</p>
+                </div>
+              )}
+
+              {/* {item.change.dir === "up" ? (
                 <div className="flex gap-1 items-center text-red-500">
                   <IoCaretUpSharp />
                   <p>{toBengaliNumber(item.change.pct)} %</p>
@@ -43,7 +60,7 @@ const Marquee = async () => {
                   <IoCaretDownSharp />
                   <p>{toBengaliNumber(item.change.pct)} %</p>
                 </div>
-              )}
+              )} */}
             </Link>
           ))}
         </MarqueeText>

@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import Header from "@/components/Header";
 import Marquee from "@/components/Marquee";
+import Footer from "@/components/Footer";
 
 const notoSansBengali = Noto_Sans_Bengali({
   variable: "--font-noto-sans-bengali",
@@ -25,7 +26,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col container mx-auto">
         <Header />
         <Marquee />
-        <main className="bg-base-300">{children}</main>
+        <main className="bg-base-300 px-6">{children}</main>
+        <Footer />
         <Toaster />
       </body>
     </html>

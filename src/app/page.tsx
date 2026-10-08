@@ -1,3 +1,4 @@
+import AllProducts from "@/components/AllProducts";
 import HeroBanner from "@/components/HeroBanner";
 import PriceDecrease from "@/components/PriceDecrease";
 import PriceIncrease from "@/components/PriceIncrease";
@@ -9,6 +10,7 @@ export default function Home() {
       <HeroBanner />
       <PriceIncrease />
       <PriceDecrease />
+      <AllProducts />
     </div>
   );
 }
