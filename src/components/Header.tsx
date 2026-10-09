@@ -16,13 +16,13 @@ const Header = () => {
         <div className="flex  gap-2 min-w-0 items-center sm:gap-3">
           <Link
             href="/"
-            className="shrink-0 rounded-xl bg-[#05893E] p-3 sm:p-4 sm:rounded-2xl "
+            className="shrink-0 rounded-xl bg-[#05893E] p-3 sm:p-4 sm:rounded-2xl sm:block hidden"
           >
             <Image src={logo} alt="Logo icons" width={30} height={30} />
           </Link>
-          <div className="min-w-0 sm:block hidden">
+          <div className="min-w-0 ">
             <Link href="/">
-              <h2 className="mb-0.5 truncate text-2xl sm:text-3xl font-bold ">
+              <h2 className="mb-0.5 truncate text-xl sm:text-3xl font-bold ">
                 বাজার দর
               </h2>
             </Link>
