@@ -20,7 +20,7 @@ const ProductDetailPage = async ({
     throw new Error("Failed to fetch product");
   }
   const product: IWholeProductType = await res.json();
-  console.log(product);
+  // console.log(product);
 
   const toBengaliNumber = (value: number | string) => {
     const bengaliDigits = "০১২৩৪৫৬৭৮৯";
@@ -42,7 +42,7 @@ const ProductDetailPage = async ({
         <IoChevronForward className="text-sm" />
         <Link
           href={`/category/${product.category}`}
-          className="hover:text-[#05893E]"
+          className="hover:text-[#05893E] hover:underline"
         >
           {product.categoryNameBn}
         </Link>
@@ -50,14 +50,14 @@ const ProductDetailPage = async ({
         <span>{product.nameBn}</span>
       </div>
       {/* ----- div --- or card ---------------------*/}
-      <div className="flex items-center justify-between rounded-3xl border border-[#dce5df] bg-white p-6 shadow-sm mb-8">
-        <div className="flex items-center gap-5">
+      <div className="flex flex-col gap-4 lg:flex-row items-center justify-between rounded-3xl border border-[#dce5df] bg-white p-6 shadow-sm mb-8">
+        <div className="flex flex-col text-center md:text-left md:flex-row items-center gap-5">
           <div className="flex h-28 w-28 items-center justify-center rounded-2xl bg-[#f0f5f1] text-6xl">
             {product.image}
           </div>
 
           <div>
-            <h1 className="text-4xl font-bold text-[#202822]">
+            <h1 className="text-3xl lg:text-4xl font-bold text-[#202822]">
               {product.nameBn}
             </h1>
 
@@ -65,7 +65,7 @@ const ProductDetailPage = async ({
               প্রতি {translateUnit(product.unit)} · {product.categoryNameBn}
             </p>
 
-            <p className="mt-4 text-lg text-[#303833]">
+            <p className="mt-4 text-lg text-[#303833] ">
               গতকালের তুলনায় আজ দাম {}
               <span className="font-semibold text-[#202822]">
                 {product.yesterday > product.today ? (
@@ -76,15 +76,19 @@ const ProductDetailPage = async ({
                   <span>অপরিবর্তিত রয়েছে</span>
                 )}
               </span>{" "}
-              · {result} টাকা
+              ·{" "}
+              <span className="text-green-600 ">{toBengaliNumber(result)}</span>{" "}
+              টাকা
             </p>
           </div>
         </div>
 
-        <div className="rounded-3xl bg-[#f0f5f1] px-8 py-6 text-center space-y-2">
+        <div className="rounded-3xl bg-[#f0f5f1] px-10 py-8 lg:px-8 lg:py-6 text-center space-y-2">
           <p className="text-lg text-[#6b716d]">আজকের দাম</p>
 
-          <p className="text-5xl font-bold text-[#202822]">{product.today}</p>
+          <p className="text-5xl font-bold text-[#202822]">
+            {toBengaliNumber(product.today)}
+          </p>
 
           <p className="text-lg text-[#6b716d]">
             টাকা / {translateUnit(product.unit)}

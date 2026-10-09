@@ -3,6 +3,7 @@ import logo from "@/assets/logo-icon.png";
 import Link from "next/link";
 import Navlinks from "./Navlinks";
 import UserAuthBtn from "./UserAuthBtn";
+// import BanglaDate from "./BanglaDate";
 
 const Header = () => {
   const date = new Date().toLocaleDateString("bn-BD", {
@@ -25,7 +26,10 @@ const Header = () => {
                 বাজার দর
               </h2>
             </Link>
-            <p className="truncate text-sm sm:text-base">{date}</p>
+            <p className="truncate text-sm sm:text-base">
+              {/* <BanglaDate /> */}
+              {date}
+            </p>
           </div>
         </div>
         {/* <p className="truncate text-sm sm:text-base">{date}</p> */}

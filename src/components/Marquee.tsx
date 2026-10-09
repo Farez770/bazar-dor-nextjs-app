@@ -11,6 +11,7 @@ const Marquee = async () => {
   // );
   const data = await res.json();
   // console.log(data);
+  // console.log(data.id);
 
   const toBengaliNumber = (value: number | string) => {
     const bengaliDigits = "০১২৩৪৫৬৭৮৯";
@@ -26,7 +27,7 @@ const Marquee = async () => {
         <MarqueeText pauseOnHover>
           {data.map((item: IMarqueeProductType) => (
             <Link
-              href={`/product/${item.id}`}
+              href={`/products/${item.id}`}
               key={item.id}
               className="flex gap-4 items-center px-4 py-2 border-r border-gray-300 hover:bg-gray-100 transition-all"
             >
