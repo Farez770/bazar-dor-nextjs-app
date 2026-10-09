@@ -9,10 +9,10 @@ import { SiGithub } from "react-icons/si";
 const SignInPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   return (
-    <section className="my-6">
+    <section className="my-4">
       <div className="flex flex-col items-center mb-12">
         <div className="text-center space-y-3 mt-4">
-          <h1 className="font-bold text-4xl my-2">সাইন ইন</h1>
+          <h1 className="font-bold text-4xl my-3">সাইন ইন</h1>
           <p className="text-gray-500 mb-4">
             বিস্তারিত দাম, বাজার তুলনা ও প্রোফাইল দেখতে অ্যাকাউন্টে ঢুকুন।
           </p>

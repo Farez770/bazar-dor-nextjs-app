@@ -1,91 +1,143 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import { SiGithub } from "react-icons/si";
 
 const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const handleOnSubmit = async (e: React.SubmitEvent<HTMLElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const user = Object.fromEntries(formData.entries()) as {
+      name: string;
+      email: string;
+      password: string;
+      confirmPassword: string;
+    };
+
+    console.log("data from the form data", user);
+    // Convert FormData to plain object
+
+    const { data, error } = await authClient.signUp.email({
+      name: user.name,
+      email: user.email,
+      password: user.password,
+      callbackURL: "/",
+    });
+
+    if (user.password.length < 8) {
+      toast.error("পাসওয়ার্ড কমপক্ষে ৮ অক্ষরের হতে হবে।");
+      return;
+    }
+
+    if (user.password !== user.confirmPassword) {
+      toast.error("দুটি পাসওয়ার্ড মিলছে না।");
+      return;
+    }
+
+    if (data) {
+      console.log(data);
+      redirect("/");
+    }
+    if (error) {
+      toast.error(error.message ?? "সাইন আপ করতে সমস্যা হয়েছে।");
+      return;
+    }
+    toast.success("আপনার একাউন্ট সফল ভাবে তৈরী হয়েছে। ");
+  };
+
   return (
-    <section className="my-6">
+    <section className="my-4">
       <div className="flex flex-col items-center mb-12">
         <div className="text-center space-y-3 mt-4">
-          <h1 className="font-bold text-4xl my-2">অ্যাকাউন্ট তৈরি করুন</h1>
+          <h1 className="font-bold text-4xl my-3">অ্যাকাউন্ট তৈরি করুন</h1>
           <p className="text-gray-500 mb-4">
             বিনা খরচে সাইন আপ করে সব বিস্তারিত দাম দেখুন।
           </p>
         </div>
         <div className=" rounded-2xl bg-white p-5 md:p-7 mb-8">
-          <fieldset className="fieldset border-base-300 rounded-xl w-[280px] md:w-md ">
-            <label className="label text-black ">নাম</label>
-            <input
-              type="text"
-              className="input w-[280px] md:w-md"
-              placeholder="যেমন: রহিম উদ্দিন"
-            />
-            <label className="label text-black ">ইমেইল</label>
-            <input
-              type="email"
-              className="input w-[280px] md:w-md"
-              placeholder="you@example.com"
-            />
-            <label className="label mt-2 text-black">পাসওয়ার্ড</label>
-            {/* <input
+          <form onSubmit={handleOnSubmit}>
+            <fieldset className="fieldset border-base-300 rounded-xl w-[280px] md:w-md ">
+              <label className="label text-black ">নাম</label>
+              <input
+                name="name"
+                type="text"
+                className="input w-[280px] md:w-md"
+                placeholder="যেমন: রহিম উদ্দিন"
+              />
+              <label className="label text-black ">ইমেইল</label>
+              <input
+                name="email"
+                type="email"
+                className="input w-[280px] md:w-md"
+                placeholder="you@example.com"
+              />
+              <label className="label mt-2 text-black">পাসওয়ার্ড</label>
+              {/* <input
                   type="password"
                   className="input w-[280px] md:w-md"
                   placeholder="কমপক্ষে ৮ অক্ষর"
                 /> */}
 
-            <div className="relative w-[280px] md:w-md">
-              <input
-                type={showPassword ? "text" : "password"}
-                className="input w-full pr-10"
-                placeholder="কমপক্ষে ৮ অক্ষর"
-              />
+              <div className="relative w-[280px] md:w-md">
+                <input
+                  name="password"
+                  type={showPassword ? "text" : "password"}
+                  className="input w-full pr-10"
+                  placeholder="কমপক্ষে ৮ অক্ষর"
+                />
 
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute top-1/2 right-3 -translate-y-1/2 text-gray-500 hover:text-[#05893E] cursor-pointer"
-                aria-label={showPassword ? "Hide password" : "Show password"}
-              >
-                {showPassword ? <IoEyeOff size={20} /> : <IoEye size={20} />}
-              </button>
-            </div>
-            <label className="label mt-2 text-black">
-              পাসওয়ার্ড নিশ্চিত করুন
-            </label>
-            <div className="relative w-[280px] md:w-md">
-              <input
-                type={showPassword ? "text" : "password"}
-                className="input w-full pr-10"
-                placeholder="আবার লিখুন"
-              />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute top-1/2 right-3 -translate-y-1/2 text-gray-500 hover:text-[#05893E] cursor-pointer"
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? <IoEyeOff size={20} /> : <IoEye size={20} />}
+                </button>
+              </div>
+              <label className="label mt-2 text-black">
+                পাসওয়ার্ড নিশ্চিত করুন
+              </label>
+              <div className="relative w-[280px] md:w-md">
+                <input
+                  name="confirmPassword"
+                  type={showConfirmPassword ? "text" : "password"}
+                  className="input w-full pr-10"
+                  placeholder="আবার লিখুন"
+                />
 
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute top-1/2 right-3 -translate-y-1/2 text-gray-500 hover:text-[#05893E] cursor-pointer"
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? <IoEyeOff size={20} /> : <IoEye size={20} />}
+                </button>
+              </div>
               <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute top-1/2 right-3 -translate-y-1/2 text-gray-500 hover:text-[#05893E] cursor-pointer"
-                aria-label={showPassword ? "Hide password" : "Show password"}
+                type="submit"
+                className="btn mt-4 rounded border border-[#047F39] bg-[#05893E] px-3 py-2 text-sm text-white shadow-md shadow-[#047F39] hover:bg-[#047F39]  sm:px-4 sm:py-3 sm:text-base lg:px-5 lg:py-6 lg:text-lg"
               >
-                {showPassword ? <IoEyeOff size={20} /> : <IoEye size={20} />}
+                অ্যাকাউন্ট তৈরি করুন
               </button>
-            </div>
-            <button
-              type="submit"
-              className="btn mt-4 rounded border border-[#047F39] bg-[#05893E] px-3 py-2 text-sm text-white shadow-md shadow-[#047F39] hover:bg-[#047F39]  sm:px-4 sm:py-3 sm:text-base lg:px-5 lg:py-6 lg:text-lg"
-            >
-              অ্যাকাউন্ট তৈরি করুন
-            </button>
-          </fieldset>
+            </fieldset>
+          </form>
           <div className="divider">অথবা</div>
           <div className="flex gap-3 md:gap-2 flex-col md:flex-row">
-            <button className="btn">
+            <button className="btn border border-[#05893E]">
               <FcGoogle />
               Google দিয়ে চালিয়ে যান
             </button>
-            <button className="btn">
+            <button className="btn border border-[#05893E]">
               <SiGithub />
               GitHub দিয়ে চালিয়ে যান
             </button>
