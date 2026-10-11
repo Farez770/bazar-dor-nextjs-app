@@ -73,10 +73,11 @@ Make sure you have the following installed:
 ## 🌐 API Endpoints
 
 The application uses the BazarDor API to retrieve product and category information.
+
 **Main_API_URL:**
 
 ```text
-Main_API_URL: https://openapi.programming-hero.com/api/bazardor
+ https://openapi.programming-hero.com/api/bazardor
 ```
 
 **Base URL:**
@@ -119,6 +120,10 @@ Developed with ❤️ as a web development learning project.
 ---
 
 **বাজার দর — প্রয়োজনীয় পণ্যের দাম এক নজরে।**
+
+---
+
+---
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
