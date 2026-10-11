@@ -17,18 +17,6 @@ const formatPrice = (price: number) => {
   return `${toBengaliNumber(formatted)} টাকা`;
 };
 
-// const translateUnit = (unit: string) => {
-//   const units: Record<string, string> = {
-//     kg: "কেজি",
-//     gram: "গ্রাম",
-//     liter: "লিটার",
-//     piece: "টি",
-//     dozen: "ডজন",
-//   };
-
-//   return units[unit.toLowerCase()] ?? unit;
-// };
-
 const ProductMarketSummary = ({ product }: ProductMarketSummaryProps) => {
   const { markets, unit } = product;
   console.log(markets);

@@ -1,27 +1,25 @@
 import { IIncreaseProductType } from "@/Types/type";
-import Image from "next/image";
-import React from "react";
+
 import { IoCaretUpSharp } from "react-icons/io5";
 import ProductCard from "./ProductCard";
 
 const PriceIncrease = async () => {
-  const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products");
-  // const res = await fetch(
-  //   "https://api.api-store.workers.dev/api/bazardor/products",
-  // );
-  const data = await res.json();
-  const increaseProducts = data.filter(
-    (item: IIncreaseProductType) => item.change.dir === "up",
+  const res = await fetch(
+    "https://openapi.programming-hero.com/api/bazardor/products",
   );
 
-  //   console.log(data);
+  const data = await res.json();
+  // const increaseProducts = data.filter(
+  //   (item: IIncreaseProductType) => item.change.dir === "up",
+  // );
+  const increaseProducts = data
+    .filter((item: IIncreaseProductType) => item.change.dir === "up")
+    .sort(
+      (a: IIncreaseProductType, b: IIncreaseProductType) =>
+        b.change.pct - a.change.pct,
+    );
 
-  //   const toBengaliNumber = (value: number | string) => {
-  //     const bengaliDigits = "০১২৩৪৫৬৭৮৯";
-  //     return value
-  //       .toString()
-  //       .replace(/\d/g, (digit) => bengaliDigits[Number(digit)]);
-  //   };
+  //   console.log(data);
 
   return (
     <div className="my-10">

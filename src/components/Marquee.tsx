@@ -1,14 +1,15 @@
 import { IMarqueeProductType } from "@/Types/type";
+import { translateUnit } from "@/utils/translateUnit";
 import Link from "next/link";
 import React from "react";
 import { IoCaretUpSharp, IoCaretDownSharp } from "react-icons/io5";
 import MarqueeText from "react-marquee-text";
 
 const Marquee = async () => {
-  const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products");
-  // const res = await fetch(
-  //   "https://api.api-store.workers.dev/api/bazardor/products",
-  // );
+  const res = await fetch(
+    "https://openapi.programming-hero.com/api/bazardor/products",
+  );
+
   const data = await res.json();
   // console.log(data);
   // console.log(data.id);
@@ -24,7 +25,7 @@ const Marquee = async () => {
   return (
     <div>
       <div className="w-full py-2">
-        <MarqueeText pauseOnHover>
+        <MarqueeText pauseOnHover duration={20}>
           {data.map((item: IMarqueeProductType) => (
             <Link
               href={`/products/${item.id}`}
@@ -33,7 +34,7 @@ const Marquee = async () => {
             >
               <p>{item.image}</p>
               <p>{item.nameBn}</p>
-              <p>{`${toBengaliNumber(item.today)} টাকা/কেজি`}</p>
+              <p>{`${toBengaliNumber(item.today)} টাকা/${translateUnit(item.unit)}`}</p>
 
               {item.change.dir === "up" ? (
                 <div className="flex items-center gap-1 text-red-500">

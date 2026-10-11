@@ -1,7 +1,5 @@
 import SelectOrderProduct from "@/components/SelectOrderProduct";
 
-import Image from "next/image";
-
 const CategoryPage = async ({
   params,
 }: {
@@ -10,8 +8,9 @@ const CategoryPage = async ({
   const { categoryId } = await params;
 
   const res = await fetch(
-    `https://api.abcz.workers.dev/api/bazardor/products?category=${categoryId}`,
+    `https://openapi.programming-hero.com/api/bazardor/products?category=${categoryId}`,
   );
+
   const data = await res.json();
   //   console.log(data);
 

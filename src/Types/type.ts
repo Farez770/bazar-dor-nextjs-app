@@ -37,6 +37,7 @@ export interface IMarqueeProductType {
   nameBn: string;
   image: string;
   today: number;
+  unit: string;
   change: {
     dir: "up" | "down" | "flat";
     pct: number;
@@ -47,6 +48,7 @@ export interface IAllProductType {
   nameBn: string;
   image: string;
   today: number;
+  unit: string;
   change: {
     dir: "up" | "down" | "flat";
     pct: number;
@@ -58,6 +60,7 @@ export interface IIncreaseProductType {
   nameBn: string;
   image: string;
   today: number;
+  unit: string;
   change: {
     dir: "up" | "down" | "flat";
     pct: number;
@@ -69,6 +72,7 @@ export interface IDecreaseProductType {
   nameBn: string;
   image: string;
   today: number;
+  unit: string;
   change: {
     dir: "up" | "down" | "flat";
     pct: number;
@@ -81,6 +85,7 @@ export interface IProductCardProps {
     nameBn: string;
     image: string;
     today: number;
+    unit: string;
     change: {
       dir: "up" | "down" | "flat";
       pct: number;

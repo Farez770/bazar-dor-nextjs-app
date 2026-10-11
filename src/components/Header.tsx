@@ -1,15 +1,12 @@
 import Image from "next/image";
 import logo from "@/assets/logo-icon.png";
 import Link from "next/link";
+import { Suspense } from "react";
 import Navlinks from "./Navlinks";
 import UserAuthBtn from "./UserAuthBtn";
-// import BanglaDate from "./BanglaDate";
+import BanglaDate from "./BanglaDate";
 
 const Header = () => {
-  const date = new Date().toLocaleDateString("bn-BD", {
-    dateStyle: "full",
-  });
-
   return (
     <header className="px-4 sm:px-5 lg:px-6">
       <div className="flex justify-between items-center py-4">
@@ -27,16 +24,15 @@ const Header = () => {
               </h2>
             </Link>
             <p className="truncate text-sm sm:text-base">
-              {/* <BanglaDate /> */}
-              {date}
+              <BanglaDate />
             </p>
           </div>
         </div>
-        {/* <p className="truncate text-sm sm:text-base">{date}</p> */}
-
         <UserAuthBtn />
       </div>
-      <Navlinks />
+      <Suspense fallback={<div>Data is Loading... </div>}>
+        <Navlinks />
+      </Suspense>
     </header>
   );
 };

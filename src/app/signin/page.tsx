@@ -38,6 +38,18 @@ const SignInPage = () => {
     }
   };
 
+  const handleGoogleSignIn = async () => {
+    await authClient.signIn.social({
+      provider: "google",
+    });
+  };
+
+  const handleGithubSignIn = async () => {
+    await authClient.signIn.social({
+      provider: "github",
+    });
+  };
+
   return (
     <section className="my-4">
       <div className="flex flex-col items-center mb-12">
@@ -91,11 +103,11 @@ const SignInPage = () => {
           </form>
           <div className="divider">অথবা</div>
           <div className="flex gap-3 md:gap-2 flex-col md:flex-row">
-            <button className="btn">
+            <button onClick={handleGoogleSignIn} className="btn">
               <FcGoogle />
               Google দিয়ে চালিয়ে যান
             </button>
-            <button className="btn">
+            <button onClick={handleGithubSignIn} className="btn">
               <SiGithub />
               GitHub দিয়ে চালিয়ে যান
             </button>

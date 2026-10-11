@@ -1,4 +1,5 @@
 import { IProductCardProps } from "@/Types/type";
+import { translateUnit } from "@/utils/translateUnit";
 import Link from "next/link";
 import { IoCaretDownSharp, IoCaretUpSharp } from "react-icons/io5";
 
@@ -24,7 +25,9 @@ const ProductCard = ({ item }: IProductCardProps) => {
             <h3 className="text-2xl font-semibold text-[#202822]">
               {item.nameBn}
             </h3>
-            <p className="text-lg text-[#303b34]">প্রতি কেজি</p>
+            <p className="text-lg text-[#303b34]">
+              প্রতি {translateUnit(item.unit)}
+            </p>
           </div>
         </div>
 

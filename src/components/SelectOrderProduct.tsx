@@ -1,5 +1,5 @@
 "use client";
-import { IAllProductType, IWholeProductType } from "@/Types/type";
+import { IWholeProductType } from "@/Types/type";
 import React, { useState } from "react";
 import ProductCard from "./ProductCard";
 
@@ -45,7 +45,7 @@ const SelectOrderProduct = ({
                 | "দাম : বেশি থেকে কম",
             )
           }
-          className="select select-md w-[180px] flex justify-center items-center"
+          className="select select-md w-45 flex justify-center items-center"
         >
           <option value="ডিফল্ট">ডিফল্ট</option>
           <option value="দাম : কম থেকে বেশি">দাম : কম থেকে বেশি</option>

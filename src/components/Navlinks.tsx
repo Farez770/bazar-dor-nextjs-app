@@ -15,11 +15,8 @@ const Navlinks = () => {
     const getCategories = async () => {
       try {
         const res = await fetch(
-          "https://api.abcz.workers.dev/api/bazardor/categories",
+          "https://openapi.programming-hero.com/api/bazardor/categories",
         );
-        // const res = await fetch(
-        //   "https://api.api-store.workers.dev/api/bazardor/categories",
-        // );
 
         const result = await res.json();
 
@@ -35,7 +32,11 @@ const Navlinks = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        Loading...<span className="loading loading-spinner text-success"></span>
+      </div>
+    );
   }
 
   return (
@@ -53,11 +54,11 @@ const Navlinks = () => {
         ))}
       </div>
 
-      <div className="pointer-events-none absolute left-0 top-0 flex h-full items-center bg-gradient-to-r from-white via-white/80 to-transparent pr-6 sm:hidden">
+      <div className="pointer-events-none absolute left-0 top-0 flex h-full items-center bg-linear-to-r from-white via-white/80 to-transparent pr-6 sm:hidden">
         <span className="text-xl text-[#05893E]">←</span>
       </div>
 
-      <div className="pointer-events-none absolute right-0 top-0 flex h-full items-center bg-gradient-to-l from-white via-white/80 to-transparent pl-6 sm:hidden">
+      <div className="pointer-events-none absolute right-0 top-0 flex h-full items-center bg-linear-to-l from-white via-white/80 to-transparent pl-6 sm:hidden">
         <span className="text-xl text-[#05893E]">→</span>
       </div>
     </div>
