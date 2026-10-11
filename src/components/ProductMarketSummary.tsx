@@ -21,9 +21,9 @@ const ProductMarketSummary = ({ product }: ProductMarketSummaryProps) => {
   const { markets, unit } = product;
   console.log(markets);
 
-  const marketAverages = markets.map(
-    (market: IMarketsType) => (market.min + market.max) / 2,
-  );
+  // const marketAverages = markets.map(
+  //   (market: IMarketsType) => (market.min + market.max) / 2,
+  // );
   // console.log(marketAverages);
 
   const minPrice = markets.length
@@ -88,7 +88,7 @@ const ProductMarketSummary = ({ product }: ProductMarketSummaryProps) => {
       </h2>
 
       <div className="mt-3 overflow-x-auto rounded-2xl border border-[#dce5df]">
-        <table className="w-full min-w-[650px] border-collapse text-sm sm:min-w-[650px] sm:text-sm">
+        <table className="w-full min-w-162.5 border-collapse text-sm sm:min-w-162.5 sm:text-sm">
           <thead className="bg-[#fbfdfb] text-left text-[#68716b]">
             <tr>
               <th className="px-4 py-3 font-semibold">বাজার</th>

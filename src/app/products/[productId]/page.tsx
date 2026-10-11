@@ -5,6 +5,7 @@ import { IoCaretUpSharp, IoChevronForward } from "react-icons/io5";
 import { translateUnit } from "@/utils/translateUnit";
 // import ProductCard from "../../../components/ProductCard";
 import ProductMarketSummary from "@/components/ProductMarketSummary";
+import EmptyState from "@/components/EmptyState";
 
 const ProductDetailPage = async ({
   params,
@@ -18,7 +19,8 @@ const ProductDetailPage = async ({
   );
 
   if (!res.ok) {
-    throw new Error("Failed to fetch product");
+    // throw new Error("Failed to fetch product");
+    return <EmptyState />;
   }
   const product: IWholeProductType = await res.json();
   // console.log(product);

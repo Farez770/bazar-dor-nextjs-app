@@ -10,10 +10,11 @@ export default function Home() {
       <HeroBanner />
       <Suspense
         fallback={
-          <div>
-            Data is Loading...{" "}
+          <p className="py-4 text-center text-gray-500">
+            পণ্যের তথ্য লোড হচ্ছে...
+            <span className="loading loading-spinner text-success"></span>
             <span className="loading loading-bars loading-lg"></span>
-          </div>
+          </p>
         }
       >
         <PriceIncrease />

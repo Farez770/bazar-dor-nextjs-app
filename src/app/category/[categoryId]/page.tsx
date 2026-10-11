@@ -1,3 +1,4 @@
+import EmptyState from "@/components/EmptyState";
 import SelectOrderProduct from "@/components/SelectOrderProduct";
 
 const CategoryPage = async ({
@@ -13,6 +14,10 @@ const CategoryPage = async ({
 
   const data = await res.json();
   //   console.log(data);
+
+  if (!Array.isArray(data) || data.length === 0) {
+    return <EmptyState />;
+  }
 
   const category = data[0];
   const toBengaliNumber = (value: number | string) => {

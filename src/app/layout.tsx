@@ -29,8 +29,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Suspense
           fallback={
             <div>
-              Data is Loading...
-              <span className="loading loading-spinner text-success"></span>{" "}
+              সর্বশেষ বাজারদরের তথ্য লোড হচ্ছে...
+              <span className="loading loading-spinner text-success"></span>
             </div>
           }
         >

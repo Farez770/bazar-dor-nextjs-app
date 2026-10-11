@@ -29,7 +29,7 @@ const HeroBanner = () => {
           src={heroimg}
           alt="Hero Banner"
           width={600}
-          className="w-[300px] md:w-[400px] lg:w-[600px]"
+          className="w-75 md:w-100 lg:w-150"
         />
       </div>
     </div>

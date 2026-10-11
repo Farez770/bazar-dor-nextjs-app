@@ -30,7 +30,7 @@ const Header = () => {
         </div>
         <UserAuthBtn />
       </div>
-      <Suspense fallback={<div>Data is Loading... </div>}>
+      <Suspense>
         <Navlinks />
       </Suspense>
     </header>

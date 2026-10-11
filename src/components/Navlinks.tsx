@@ -34,7 +34,8 @@ const Navlinks = () => {
   if (loading) {
     return (
       <div>
-        Loading...<span className="loading loading-spinner text-success"></span>
+        নেভিগেশন লিংক লোড হচ্ছে....
+        <span className="loading loading-spinner text-success"></span>
       </div>
     );
   }
