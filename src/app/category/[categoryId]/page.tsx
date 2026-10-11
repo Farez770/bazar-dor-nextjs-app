@@ -1,5 +1,6 @@
 import EmptyState from "@/components/EmptyState";
 import SelectOrderProduct from "@/components/SelectOrderProduct";
+import { notFound } from "next/navigation";
 
 const CategoryPage = async ({
   params,
@@ -15,8 +16,11 @@ const CategoryPage = async ({
   const data = await res.json();
   //   console.log(data);
 
+  // if (!Array.isArray(data) || data.length === 0) {
+  //   return <EmptyState />;
+  // }
   if (!Array.isArray(data) || data.length === 0) {
-    return <EmptyState />;
+    notFound();
   }
 
   const category = data[0];

@@ -6,6 +6,7 @@ import { translateUnit } from "@/utils/translateUnit";
 // import ProductCard from "../../../components/ProductCard";
 import ProductMarketSummary from "@/components/ProductMarketSummary";
 import EmptyState from "@/components/EmptyState";
+import { notFound } from "next/navigation";
 
 const ProductDetailPage = async ({
   params,
@@ -19,10 +20,14 @@ const ProductDetailPage = async ({
   );
 
   if (!res.ok) {
+    notFound();
     // throw new Error("Failed to fetch product");
-    return <EmptyState />;
+    // return <EmptyState />;
   }
   const product: IWholeProductType = await res.json();
+  if (!product || !product.id) {
+    notFound();
+  }
   // console.log(product);
 
   const toBengaliNumber = (value: number | string) => {

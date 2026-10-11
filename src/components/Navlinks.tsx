@@ -33,7 +33,7 @@ const Navlinks = () => {
 
   if (loading) {
     return (
-      <div>
+      <div className="text-green-500 ">
         নেভিগেশন লিংক লোড হচ্ছে....
         <span className="loading loading-spinner text-success"></span>
       </div>
